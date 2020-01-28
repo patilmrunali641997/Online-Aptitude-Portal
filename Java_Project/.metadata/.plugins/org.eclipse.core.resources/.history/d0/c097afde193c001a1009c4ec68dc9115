@@ -1,0 +1,22 @@
+package com.app.pojos;
+
+import javax.persistence.*;
+
+@Entity
+public class Feedback {
+	private Integer id;
+	private String suggestion;
+	private Integer rating;
+	
+	public Feedback() {
+		System.out.println("Inside Feedback Controller");
+	}
+
+	public Feedback(String suggestion, Integer rating) {
+		super();
+		this.suggestion = suggestion;
+		this.rating = rating;
+	}
+	
+	
+}

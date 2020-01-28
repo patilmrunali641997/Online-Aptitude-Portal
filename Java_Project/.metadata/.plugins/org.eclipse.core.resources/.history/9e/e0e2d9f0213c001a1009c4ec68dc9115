@@ -1,0 +1,24 @@
+package com.app.Dao;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.app.pojos.Feedback;
+
+@Service
+@Transactional
+public class FeedbackDaoImpl implements IFeedback {
+	@Autowired
+	SessionFactory sf;
+	
+	@Override
+	public List<Feedback> Feedbacklist(Integer id) {
+		String jpql="select f from Feedback f where f.user.id=:id";
+		return sf.getCurrentSession().createQuery(jpql,Feedback.class).setParameter("id",id).getResultList();
+	}
+
+}

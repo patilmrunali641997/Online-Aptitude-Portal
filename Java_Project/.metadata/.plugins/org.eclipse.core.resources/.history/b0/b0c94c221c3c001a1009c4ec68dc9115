@@ -1,0 +1,120 @@
+package com.app.pojos;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
+
+@Entity
+
+public class User {
+	private Integer id;
+	private String name;
+	private String email;
+	private String password;
+	private UserRole role;  
+	private String phone;
+	private int otp;
+	
+	private Feedback feedback;
+	public User() {
+		
+	}
+
+	public User(String name, String email, String password, UserRole role, String phone) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.phone = phone;
+		
+	}
+	
+	public User(String password, int otp) {
+		super();
+		this.password = password;
+		this.otp = otp;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Column(length=50,nullable=false)
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Column(length=50,unique=true)
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@Column(length=50)
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	@Enumerated(EnumType.STRING)
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+	
+	@Column(unique=true)
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	
+	public int getOtp() {
+		return otp;
+	}
+
+	public void setOtp(int otp) {
+		this.otp = otp;
+	}
+
+	@OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+	public Feedback getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(Feedback feedback) {
+		this.feedback = feedback;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+				+ ", phone=" + phone + ", otp=" + otp + "]";
+	}
+
+	
+	
+}

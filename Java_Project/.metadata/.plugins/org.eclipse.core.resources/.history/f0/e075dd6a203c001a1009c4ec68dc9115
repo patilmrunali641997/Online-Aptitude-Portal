@@ -1,0 +1,26 @@
+package com.app.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.Dao.IFeedback;
+import com.app.pojos.Feedback;
+
+@RestController
+@RequestMapping("/feedback")
+public class FeedbackController {
+	@Autowired
+	IFeedback dao;
+	
+	public List<Feedback> listFeedback(@RequestParam int id)
+	{
+		System.out.println(id);
+		List<Feedback> flist=dao.Feedbacklist(id);
+		System.out.println(flist);
+		return flist;
+	}
+}
